@@ -1,0 +1,197 @@
+/* CSS Variables */
+:root {
+  --primary-color: #6366f1; /* Indigo */
+  --danger-color: #ef4444; /* Red */
+  --danger-hover: #dc2626; /* Darker Red */
+  --text-color: #1f2937; /* Dark Gray */
+  --text-light: #6b7280; /* Medium Gray */
+  --border-color: #e5e7eb; /* Light Gray */
+  --bg-color: #f8fafc; /* Very Light Blue-Gray */
+  --white: #ffffff; /* White */
+
+  /* Keep all spacing, sizing, and timing variables the same */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --border-radius: 8px;
+  --container-width: 600px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Layout */
+.container {
+  max-width: var(--container-width);
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-lg);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+header {
+  margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Input Styles */
+.task-input {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+}
+
+.task-input input {
+  width: 100%;
+  padding: var(--spacing-md);
+  padding-right: 3rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: border-color var(--transition-speed) ease;
+}
+
+.task-input input:focus {
+  border-color: var(--primary-color);
+}
+
+/* Button Styles */
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.enter-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color);
+}
+
+.enter-btn:hover {
+  color: var(--primary-color);
+}
+
+.delete-btn {
+  color: var(--danger-color);
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.delete-btn:hover {
+  color: var(--danger-hover);
+}
+
+/* Task List Styles */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+/* Task Elements */
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--spacing-md);
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-speed) ease-in;
+}
+.fade-out {
+  animation: fadeOut var(--transition-speed) ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  :root {
+    --spacing-lg: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .task-input input,
+  .task-text {
+    font-size: 0.9rem;
+  }
+}
